@@ -1,0 +1,9 @@
+version: '2'
+services:
+  api:
+    container_name: website_container
+    image: jonthepirate/website:development
+    ports:
+      - "80:80"
+    volumes:
+     - ./website/src:/var/www/html
