@@ -2,6 +2,10 @@ FROM php:7.0.11-apache
 COPY src/ /var/www/html/
 EXPOSE 80
 
+COPY docker/0-laravel.conf /etc/apache2/sites-available/0-laravel.conf
+WORKDIR /etc/apache2/sites-enabled
+RUN ln -s /etc/apache2/sites-available/0-laravel.conf
+
 RUN apt-get update
 
 # Install composer
@@ -13,3 +17,18 @@ RUN mv composer.phar /usr/local/bin/composer
 
 # Install add-apt-repository support
 RUN apt-get install -y git
+
+RUN apt-get install -y telnet
+
+ENV PATH "$PATH:/var/www/html/vendor/bin"
+
+# Install zip abilities.
+RUN apt-get update \
+&& apt-get install -y zlib1g-dev \
+&& rm -rf /var/lib/apt/lists/* \
+&& docker-php-ext-install zip
+
+WORKDIR /var/www/html
+
+RUN chmod -R 777 /var/www/html/website/storage
+RUN chmod -R 777 /var/www/html/website/bootstrap/cache

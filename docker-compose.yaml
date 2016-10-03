@@ -1,9 +1,16 @@
 version: '2'
 services:
   api:
-    container_name: website_container
+    container_name: api
     image: jonthepirate/website:development
     ports:
       - "80:80"
     volumes:
-     - ./website/src:/var/www/html
+      - ./website/src:/var/www/html
+    links:
+      - db
+  db:
+    container_name: db
+    image: mysql:5.7.15
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
