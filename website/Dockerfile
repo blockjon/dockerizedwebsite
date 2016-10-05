@@ -1,4 +1,4 @@
-FROM php:7.0.11-apache
+FROM ubuntu:1404
 COPY src/ /var/www/html/
 EXPOSE 80
 
