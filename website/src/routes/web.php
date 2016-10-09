@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/jon', function () {
+    return view('welcome');
+});
+
+// Route::get('ride/{id}', 'RideController');
