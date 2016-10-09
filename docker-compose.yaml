@@ -13,4 +13,4 @@ services:
     container_name: db
     image: mysql:5.7.15
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_ROOT_PASSWORD=MUj31P6tnW3m
